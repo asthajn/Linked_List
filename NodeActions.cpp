@@ -72,8 +72,11 @@ void List::print(){
 void List::deleteFromListBegin(int n){
 
 	Node* tmp = head;
+	
 	for (int i=0;i<n;i++){
+		Node* tmp2 = tmp;
 		tmp= tmp->Next();
+		delete tmp2;
 	}
 
 	head = tmp;
@@ -88,7 +91,14 @@ void List::deleteFromListEnd(int n){
 		if(i>=n)
 			tmp2=tmp2->Next();
 	}
+	tmp = tmp2->Next();
 	tmp2->setNext(NULL);
+
+	while(tmp->Next()!=NULL){
+		Node* tmp1 = tmp;
+		tmp= tmp->Next();
+		delete tmp1;
+	}
 }
 int main(){
 
